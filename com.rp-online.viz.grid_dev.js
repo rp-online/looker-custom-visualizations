@@ -1,4 +1,4 @@
-/* viz_name: rpm_grid_dev */
+/* viz_name: com.rp-online.viz.grid_dev */
 
 function on(elem) {
   var layer = document.getElementById(

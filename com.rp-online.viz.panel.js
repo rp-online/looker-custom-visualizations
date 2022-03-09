@@ -1,4 +1,9 @@
-/* viz_name: rpm_panel */
+/* viz_name: com.rp-online.viz.panel */
+
+function viz_log(message) {
+  let log_prefix = "Custom Viz - RPM Panel"
+  console.log(log_prefix + ": " + message)
+}
 
 function on(elem) {
   var layer = document.getElementById(
@@ -7,7 +12,7 @@ function on(elem) {
   layer.style.visibility = "visible";
   var description = elem.getElementsByClassName("panel-item__description");
   var textDesc = description[0].innerText;
-  console.log(textDesc);
+  viz_log(textDesc);
   var divDesc = document.createElement('div');
   divDesc.className = 'panel-item__info-description-show';
   divDesc.id = 'panel-item__info-description-show';
@@ -29,44 +34,41 @@ function off() {
 }
 let results = []
 let excludeList = []
-function addMeasurs(measures){
+function addMeasures(measures){
   measures.forEach(measure => {
     results.push(measure);
   });
 }
 function addPivots(data){
-  console.log('generate new results for pivots')
-  let newMesures = []
+  viz_log('generate new results for pivots')
+  let newMeasures = []
   for (const [measureName, measure] of Object.entries(data)) {
      const measureIndex = results.findIndex(x => x.name === measureName);
      if(measureIndex > -1){
          for (const [pivotName, pdata] of Object.entries(measure)) {
-                    let newMesure = Object.assign({}, results[measureIndex])
+                    let newMeasure = Object.assign({}, results[measureIndex])
 
-                    newMesure.name = `${measureName}_${pivotName}`
-                    newMesure.pivotName = pivotName
-                    newMesure.label = `${newMesure.label} (${pivotName})`
-                    newMesures.push(newMesure)
+                    newMeasure.name = `${measureName}_${pivotName}`
+                    newMeasure.pivotName = pivotName
+                    newMeasure.label = `${newMeasure.label} (${pivotName})`
+                    newMeasures.push(newMeasure)
          }
      }
   }
-  results = newMesures
+  results = newMeasures
 }
 function flatData(data){
-    console.log('generate new data object for pivots')
+  viz_log('generate new data object for pivots')
 
   if(!data) return false
   let newData = {}
-      
       for (const [measureName, measure] of Object.entries(data)) {
 
          for (const [pivotName, pdata] of Object.entries(measure)) {
                     newData[`${measureName}_${pivotName}`] = pdata
-             
          }
      }
-
-  console.log(newData)
+  viz_log(newData)
   return newData
 }
 const fieldlist = (excludeIndex) => {
@@ -101,9 +103,9 @@ const getOptions = () => {
   
   results.forEach((field, index) => {
     const { description, label, name } = field;
-    console.log('excludeList')
-    console.log(excludeList)
-    console.log(name)
+    viz_log('excludeList')
+    viz_log(excludeList)
+    viz_log(name)
     if(!excludeList[name]){
       options[`label_${name}`] = {
         display: 'text',
@@ -400,19 +402,19 @@ a { color: #000; text-decoration:none; }
       results = []
       excludeList = []
 
-      console.log(config);  
-      console.log(queryResponse);  
-      console.log(data);  
+      viz_log(config);  
+      viz_log(queryResponse);  
+      viz_log(data);  
    
       // Grab the first cell of the data
       let firstRow = data[0];
       let secondRow = data[1];
       
-      addMeasurs(queryResponse.fields.measures)
+      addMeasures(queryResponse.fields.measures)
       //var firstCell = firstRow[queryResponse.fields.dimensions[0].name];
       
       if(queryResponse.fields.table_calculations){
-              addMeasurs(queryResponse.fields.table_calculations)
+              addMeasures(queryResponse.fields.table_calculations)
       }
       if(queryResponse.fields.pivots.length > 0){
               addPivots(data[0])
@@ -434,9 +436,9 @@ a { color: #000; text-decoration:none; }
            excludeList[config[`referenceField_${field.name}`]] = true;
          }
        })
-      console.log('results');  
-      console.log(results);
-      console.log(excludeList);
+      viz_log('results');  
+      viz_log(results);
+      viz_log(excludeList);
       
       results.forEach((field, index) => {
         if(!excludeList[`${field.name}`]){
@@ -511,9 +513,9 @@ a { color: #000; text-decoration:none; }
               };
 
                       const formatString  = (valueFormat.match(/(?:"[^"]*"$)/)) ? valueFormat.match(/(?:"[^"]*"$)/)[0].replace(/"/g, "") : ""
-                      console.log(`formatString: ${formatString}`)
+                      viz_log(`formatString: ${formatString}`)
                       let formatClean = valueFormat.replace(/(?:"[^"]*"*$)/,"").replace(/ /g, "")
-                      console.log(`formatClean: ${formatClean}`)
+                      viz_log(`formatClean: ${formatClean}`)
                       if(formatClean.slice(-1) == ","){
                         value = value/1000
                         formatClean = formatClean.slice(0, -1);
@@ -551,14 +553,14 @@ a { color: #000; text-decoration:none; }
                             break;
                         }
 
-                      console.log(`format: ${format}`)
+                        viz_log(`format: ${format}`)
             
 
                       const devider = (valueFormat.match(/,/g) || []).length 
                       d3.formatDefaultLocale(locale);
 
                       const f = d3.format(format);
-                      console.log(`value: ${value}`)
+                      viz_log(`value: ${value}`)
                       valFormatted =`${f(value)}  ${formatString}`
           }
 
@@ -592,8 +594,8 @@ a { color: #000; text-decoration:none; }
         elements = elements+elem;
 
 
-        console.log(field.label)
-        console.log(index)
+        viz_log(field.label)
+        viz_log(index)
         } 
       })
       this.trigger('registerOptions', getOptions());
