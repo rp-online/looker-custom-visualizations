@@ -1,9 +1,9 @@
 /* viz_name: com.rp-online.viz.panel */
 
 function viz_log(message) {
-  let log_prefix = "Custom Viz - RPM Panel"
-  // Comment out for Production Version
-  // console.log(log_prefix + ": " + message)
+  let log_prefix = "Custom Viz - DEV RPM Panel"
+  // Comment out for Production Version - only in the DEV Version this should output
+  console.log(log_prefix + ": " + message)
 }
 
 function on(elem) {
