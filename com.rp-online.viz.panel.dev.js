@@ -1,4 +1,4 @@
-/* viz_name: com.rp-online.viz.panel.dev */
+/* viz_name: com.rp-online.viz.panel.dev 0.3*/
 
 let results = []
 let excludeList = []
