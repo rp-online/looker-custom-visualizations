@@ -136,7 +136,7 @@ const getOptions = () => {
         label: `${label} ----------------- `,
         section: 'Series',
         type: 'string',
-        order: index * 10 + 0
+        order: index * 100 + 0
       };
 
       options[`valueFormat_${name}`] = {
@@ -144,7 +144,7 @@ const getOptions = () => {
         placeholder: ``,
         label: `Value Format: `,
         section: 'Series',
-        order: index * 10 + 5,
+        order: index * 100 + 5,
         display_size: 'half',
         type: 'string',
       };
@@ -166,7 +166,7 @@ const getOptions = () => {
         default: "percentage",
         section: 'Series',
         type: 'string',
-        order: index * 10 + 6,
+        order: index * 100 + 6,
         display_size: 'half'
       };
 
@@ -176,7 +176,7 @@ const getOptions = () => {
         default: "#ede9ec",
         section: 'Series',
         type: 'string',
-        order: index * 10 + 1,
+        order: index * 100 + 1,
         display_size: 'half'
       };
 
@@ -197,17 +197,17 @@ const getOptions = () => {
         default: "large",
         section: 'Series',
         type: 'string',
-        order: index * 10 + 2,
+        order: index * 100 + 2,
         display_size: 'half'
       };
-      
+
       options[`referenceField_${name}`] = {
         display: 'select',
         label: `Reference Field: `,
         values: fieldlist(index),
         default: "none",
         section: 'Series',
-        order: index * 10 + 7,
+        order: index * 100 + 7,
         type: 'string',
         display_size: 'half'
       };
@@ -216,7 +216,7 @@ const getOptions = () => {
         display: 'text',
         label: `Label: `,
         section: 'Series',
-        order: index * 10 + 8,
+        order: index * 100 + 8,
         type: 'string',
         display_size: 'half'
       };
@@ -225,7 +225,7 @@ const getOptions = () => {
         label: `Negative values are good`,
         default: false,
         section: 'Series',
-        order: index * 10 + 9,
+        order: index * 100 + 9,
         type: 'boolean',
         display_size: 'normal'
       };
@@ -234,7 +234,7 @@ const getOptions = () => {
         display: 'text',
         label: `Description: `,
         section: 'Series',
-        order: index * 10 + 10,
+        order: index * 100 + 10,
         display_size: 'normal',
         type: 'string',
       };
