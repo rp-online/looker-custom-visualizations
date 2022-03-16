@@ -1,5 +1,8 @@
 /* viz_name: com.rp-online.viz.panel.dev */
 
+let results = []
+let excludeList = []
+
 function viz_log(message) {
   let log_prefix = "Custom Viz - DEV RPM Panel"
   // Comment out for Production Version - only in the DEV Version this should output
@@ -34,8 +37,6 @@ function off() {
   ).style.visibility = "hidden";
   document.querySelector('.panel-item__info-description-show').remove();
 }
-let results = []
-let excludeList = []
 
 function addMeasures(measures) {
   measures.forEach(measure => {
@@ -68,7 +69,6 @@ function flatData(data) {
   if (!data) return false
   let newData = {}
   for (const [measureName, measure] of Object.entries(data)) {
-
     for (const [pivotName, pdata] of Object.entries(measure)) {
       newData[`${measureName}_${pivotName}`] = pdata
     }
@@ -97,6 +97,8 @@ const fieldlist = (excludeIndex) => {
 
 const getOptions = () => {
   let options = {
+
+    // General Options for the Panel
     orientation: {
       label: "Orientation",
       type: 'string',
@@ -115,16 +117,18 @@ const getOptions = () => {
     }
   }
 
-
+  // Generate Options for each Field
   results.forEach((field, index) => {
     const {
       description,
       label,
       name
     } = field;
+
     viz_log('excludeList')
     viz_log(excludeList)
     viz_log(name)
+
     if (!excludeList[name]) {
       options[`label_${name}`] = {
         display: 'text',
@@ -196,6 +200,7 @@ const getOptions = () => {
         order: index * 10 + 2,
         display_size: 'half'
       };
+      
       options[`referenceField_${name}`] = {
         display: 'select',
         label: `Reference Field: `,
