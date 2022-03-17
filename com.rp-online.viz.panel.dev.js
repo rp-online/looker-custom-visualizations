@@ -133,7 +133,7 @@ const getOptions = () => {
       options[`label_${name}`] = {
         display: 'text',
         placeholder: `${label}`,
-        label: `${label} ----------------- `,
+        label: `-- ${label} ------------- `,
         section: 'Series',
         type: 'string',
         order: index * 100 + 0
@@ -221,7 +221,7 @@ const getOptions = () => {
         display_size: 'half'
       };
 
-      options[`referenceNegate_${name}`] = {
+      options[`comparisonNegate_${name}`] = {
         label: `Negative values are good`,
         default: false,
         section: 'Series',
@@ -499,6 +499,9 @@ looker.plugins.visualizations.add({
         const comparisionOption = config[`comparison_${field.name}`] ? config[`comparison_${field.name}`] : false;
         const valueFormat = config[`valueFormat_${field.name}`] ? config[`valueFormat_${field.name}`] : false;
 
+        const comparisonClassPositive = config[`comparisonNegate_${field.name}`] ? 'negative' : 'positive';
+        const comparisonClassNegative = config[`comparisonNegate_${field.name}`] ? 'positive' : 'negative';
+
         const description = config[`description_${field.name}`] ? config[`description_${field.name}`] : '';
         var comparisionElem = '';
         if (comparisionOption && comparisionOption == 'percentage') {
@@ -506,17 +509,16 @@ looker.plugins.visualizations.add({
             const comparision = Math.floor(((firstRow[field.name].value - secondRow[field.name].value) / secondRow[field.name].value) * 100)
             if (comparision >= 0) {
               comparisionElem = `
-                <div class="panel-item__compare panel-item__compare--positive">
+                <div class="panel-item__compare panel-item__compare--${comparisonClassPositive}">
                   <span class="panel-item__compare-item">▲</span> ${comparision}%
                 </div>`
             }
             if (comparision < 0) {
               comparisionElem = `
-                <div class="panel-item__compare panel-item__compare--negative ">
+                <div class="panel-item__compare panel-item__compare--${comparisonClassNegative}">
                   <span class="panel-item__compare-item">▼</span> ${comparision}%
                 </div>`
             }
-
           }
         }
 
@@ -618,10 +620,10 @@ looker.plugins.visualizations.add({
 
         if (description && description != '') {
           var elem = ` 
-                <div
-            class="panel-item panel-item--${size}"
-            style="background-color: ${config[`color_${field.name}`]};"
-          >
+            <div
+              class="panel-item panel-item--${size}"
+              style="background-color: ${config[`color_${field.name}`]};"
+            >
             <div class="panel-item__label">${label} ${info}</div>
             <div class="panel-item__value">${valFormatted}</div>
             ${comparisionElem}
