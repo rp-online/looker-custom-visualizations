@@ -124,6 +124,8 @@ const getOptions = () => {
     viz_log(name)
 
     if (!excludeList[name]) {
+      
+      // Label and Description
       options[`label_${name}`] = {
         display: "text",
         placeholder: `${label}`,
@@ -143,14 +145,15 @@ const getOptions = () => {
       };
     }
 
-      options[`color_${name}`] = {
-        display: "color",
-        label: "Color: ",
-        default: "#EDE9EC",
+      // ValueFormat, Size and Color
+      options[`valueFormat_${name}`] = {
+        display: "text",
+        placeholder: "",
+        label: "Value Format: ",
         section: "Series",
+        order: index * 100 + 11,
+        display_size: "third",
         type: "string",
-        order: index * 100 + 2,
-        display_size: "third"
       };
 
       options[`size_${name}`] = {
@@ -165,20 +168,22 @@ const getOptions = () => {
         default: "large",
         section: "Series",
         type: "string",
-        order: index * 100 + 3,
+        order: index * 100 + 12,
         display_size: "third"
       };
 
-      options[`valueFormat_${name}`] = {
-        display: "text",
-        placeholder: "",
-        label: "Value Format: ",
+      options[`color_${name}`] = {
+        display: "color",
+        label: "Color: ",
+        default: "#EDE9EC",
         section: "Series",
-        order: index * 100 + 4,
-        display_size: "third",
         type: "string",
+        order: index * 100 + 13,
+        display_size: "third"
       };
 
+
+      // Comparison
       options[`comparison_${name}`] = {
         display: "select",
         label: "Comparison: ",
@@ -191,26 +196,27 @@ const getOptions = () => {
         default: "percentage",
         section: "Series",
         type: "string",
-        order: index * 100 + 5,
+        order: index * 100 + 21,
         display_size: "half"
       };
 
       options[`comparisonNegate_${name}`] = {
-        label: "Comparison: Negative values are good",
+        label: "Negative is good",
         default: false,
         section: "Series",
-        order: index * 100 + 6,
+        order: index * 100 + 22,
         type: "boolean",
         display_size: "half"
       };
 
+      // Reference Field
       options[`referenceField_${name}`] = {
         display: "select",
         label: "Reference Field: ",
         values: fieldlist(index),
         default: "none",
         section: "Series",
-        order: index * 100 + 7,
+        order: index * 100 + 31,
         type: "string",
         display_size: "half"
       };
@@ -219,7 +225,7 @@ const getOptions = () => {
         display: "text",
         label: "Label: ",
         section: "Series",
-        order: index * 100 + 8,
+        order: index * 100 + 32,
         type: "string",
         display_size: "half"
       };
