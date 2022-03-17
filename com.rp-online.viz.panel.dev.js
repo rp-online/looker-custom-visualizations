@@ -133,14 +133,24 @@ const getOptions = () => {
         order: index * 100 + 0
       };
 
+      options[`description_${name}`] = {
+        display: "text",
+        label: "Description: ",
+        section: "Series",
+        order: index * 100 + 1,
+        display_size: "normal",
+        type: "string",
+      };
+    }
+
       options[`color_${name}`] = {
         display: "color",
         label: "Color: ",
-        default: "#ede9ec",
+        default: "#EDE9EC",
         section: "Series",
         type: "string",
-        order: index * 100 + 1,
-        display_size: "half"
+        order: index * 100 + 2,
+        display_size: "third"
       };
 
       options[`size_${name}`] = {
@@ -155,8 +165,8 @@ const getOptions = () => {
         default: "large",
         section: "Series",
         type: "string",
-        order: index * 100 + 2,
-        display_size: "half"
+        order: index * 100 + 3,
+        display_size: "third"
       };
 
       options[`valueFormat_${name}`] = {
@@ -164,8 +174,8 @@ const getOptions = () => {
         placeholder: "",
         label: "Value Format: ",
         section: "Series",
-        order: index * 100 + 5,
-        display_size: "half",
+        order: index * 100 + 4,
+        display_size: "third",
         type: "string",
       };
 
@@ -181,7 +191,7 @@ const getOptions = () => {
         default: "percentage",
         section: "Series",
         type: "string",
-        order: index * 100 + 6,
+        order: index * 100 + 5,
         display_size: "half"
       };
 
@@ -189,9 +199,9 @@ const getOptions = () => {
         label: "Comparison: Negative values are good",
         default: false,
         section: "Series",
-        order: index * 100 + 7,
+        order: index * 100 + 6,
         type: "boolean",
-        display_size: "normal"
+        display_size: "half"
       };
 
       options[`referenceField_${name}`] = {
@@ -200,7 +210,7 @@ const getOptions = () => {
         values: fieldlist(index),
         default: "none",
         section: "Series",
-        order: index * 100 + 8,
+        order: index * 100 + 7,
         type: "string",
         display_size: "half"
       };
@@ -209,20 +219,11 @@ const getOptions = () => {
         display: "text",
         label: "Label: ",
         section: "Series",
-        order: index * 100 + 9,
+        order: index * 100 + 8,
         type: "string",
         display_size: "half"
       };
 
-      options[`description_${name}`] = {
-        display: "text",
-        label: "Description: ",
-        section: "Series",
-        order: index * 100 + 10,
-        display_size: "normal",
-        type: "string",
-      };
-    }
   })
   return options
 }
