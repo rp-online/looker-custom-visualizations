@@ -13,7 +13,7 @@ function on(elem) {
   );
   layer.style.visibility = "visible";
   var description = elem.getElementsByClassName("panel-item__description");
-  var textDesc = description[0].innerText;
+  var textDesc = description[0].innerHTML;
   viz_log(textDesc);
   var divDesc = document.createElement('div');
   divDesc.className = "panel-item__info-description-show";
