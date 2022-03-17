@@ -151,7 +151,7 @@ const getOptions = () => {
         placeholder: "",
         label: "Value Format: ",
         section: "Series",
-        order: index * 100 + 11,
+        order: index * 100 + 12,
         display_size: "third",
         type: "string",
       };
@@ -168,7 +168,7 @@ const getOptions = () => {
         default: "large",
         section: "Series",
         type: "string",
-        order: index * 100 + 12,
+        order: index * 100 + 11,
         display_size: "third"
       };
 
