@@ -1,5 +1,3 @@
-/* viz_name: com.rp-online.viz.panel.dev 0.3*/
-
 let results = []
 let excludeList = []
 
@@ -97,7 +95,6 @@ const fieldlist = (excludeIndex) => {
 
 const getOptions = () => {
   let options = {
-
     // General Options for the Panel
     orientation: {
       label: "Orientation",
@@ -233,11 +230,6 @@ const getOptions = () => {
 const options = getOptions();
 
 looker.plugins.visualizations.add({
-  // Id and Label are legacy properties that no longer have any function besides documenting
-  // what the visualization used to have. The properties are now set via the manifest
-  // form within the admin/visualizations page of Looker
-  id: "rpm_panel",
-  label: "Panel",
   options,
   create: function (element, config) {
 
@@ -245,7 +237,7 @@ looker.plugins.visualizations.add({
     element.innerHTML = `
       <style>
         body {
-          font-family: Helvetica, Arial, sans-serif
+          font-family: Helvetica, Arial, sans-serif;
         }
         a {
           color: #000;
@@ -629,9 +621,6 @@ looker.plugins.visualizations.add({
     elements = elements + layer;
 
     this._container.innerHTML = elements
-    // Insert the data into the page
-    // this._textElement.innerHTML = 'value:'+LookerCharts.Utils.htmlForCell(firstCell);
-
     done()
   }
 });
