@@ -233,8 +233,7 @@ const options = getOptions();
 looker.plugins.visualizations.add({
   options,
   create: function (element, config) {
-
-    // Insert a <style> tag with some styles we'll use later.
+    // CSS Styles for the Panels
     element.innerHTML = `
       <style>
         body {
@@ -388,7 +387,6 @@ looker.plugins.visualizations.add({
           display: inline-block;
           position: relative;
         }
-        
       </style>
     `;
 
@@ -436,13 +434,13 @@ looker.plugins.visualizations.add({
       this._container.className = "panel-container panel-container--vertical";
     }
 
-
     results.forEach((field, index) => {
       if (config[`referenceField_${field.name}`]) {
         excludeList[config[`referenceField_${field.name}`]] = true;
       }
     })
-    viz_log('results');
+
+    viz_log("Results");
     viz_log(results);
     viz_log(excludeList);
 
