@@ -206,7 +206,7 @@ const getOptions = () => {
         section: "Series",
         order: index * 100 + 22,
         type: "boolean",
-        display_size: "full"
+        display_size: "normal"
       };
 
       // Reference Field
