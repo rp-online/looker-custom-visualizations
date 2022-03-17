@@ -245,8 +245,7 @@ looker.plugins.visualizations.add({
     element.innerHTML = `
       <style>
         body {
-          font-family: "Google Sans", Roboto, "Noto Sans JP", "Noto Sans",
-            "Noto Sans CJK KR", Helvetica, Arial, sans-serif;
+          font-family: Helvetica, Arial, sans-serif
         }
         a {
           color: #000;
