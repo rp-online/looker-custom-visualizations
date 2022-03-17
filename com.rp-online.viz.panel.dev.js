@@ -201,12 +201,12 @@ const getOptions = () => {
       };
 
       options[`comparisonNegate_${name}`] = {
-        label: "Negative is good",
+        label: "Negative Values are good",
         default: false,
         section: "Series",
         order: index * 100 + 22,
         type: "boolean",
-        display_size: "half"
+        display_size: "full"
       };
 
       // Reference Field
