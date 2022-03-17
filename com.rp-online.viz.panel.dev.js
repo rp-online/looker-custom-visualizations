@@ -256,186 +256,162 @@ looker.plugins.visualizations.add({
 
     // Insert a <style> tag with some styles we'll use later.
     element.innerHTML = `
-        <style>
-          body {
-            font - family: "Google Sans", Roboto, "Noto Sans JP", "Noto Sans", "Noto Sans CJK KR", Helvetica, Arial, sans - serif;
-
-            "Noto Sans Arabic UI", "Noto Sans Devanagari UI", "Noto Sans Hebrew",
-            "Noto Sans Thai UI", Helvetica, Arial, sans - serif;
-          }
-
-        a {
-          color: #000; text-decoration:none; 
+      <style>
+        body {
+          font-family: "Google Sans", Roboto, "Noto Sans JP", "Noto Sans",
+            "Noto Sans CJK KR", Helvetica, Arial, sans-serif;
         }
-
+        a {
+          color: #000;
+          text-decoration: none;
+        }
         .panel-container {
           display: flex;
-
         }
-
         .panel-container--horizontal {
           flex-direction: row;
         }
-
         .panel-container--vertical {
           flex-direction: column;
         }
-
         .panel-item {
           border-radius: 3px;
-          flex-grow: 1;
           flex-basis: 100%;
-          margin: 5px; /* and that, will result in a 10px gap */
+          flex-grow: 1;
+          margin: 5px;
           padding: 15px;
           position: relative;
         }
-
         .panel-item--large .panel-item__label {
           opacity: 0.6;
         }
-
         .panel-item--large .panel-item__value {
           font-size: 1.8em;
         }
-
         .panel-item--medium {
           margin: 3px;
           padding: 7px 15px;
         }
-
         .panel-item--medium .panel-item__label {
           opacity: 0.6;
         }
-
         .panel-item--medium .panel-item__value {
           font-size: 1.4em;
         }
-
         .panel-item--small {
           display: flex;
           justify-content: space-between;
           margin: 2px;
           padding: 5px 15px;
         }
-
         .panel-item--small .panel-item__label {
           opacity: 0.6;
         }
-
         .panel-item--small .panel-item__value {
           text-align: right;
         }
-
         .panel-item__conext {
-          position: absolute;
-          right: 0;
           bottom: 0;
-          padding: 15px;
-          text-align: right;
           font-size: 0.8;
           opacity: 0.6;
+          padding: 15px;
+          position: absolute;
+          right: 0;
+          text-align: right;
         }
-
         .panel-item__compare {
           color: rgba(107, 100, 99, 0.8);
         }
-
         .panel-item__compare-item {
           font-size: 0.7em;
         }
-
         .panel-item__compare--negative {
           color: rgba(138, 40, 32, 0.8);
         }
-
         .panel-item__compare--positive {
           color: rgba(63, 153, 98, 0.8);
         }
-
         .panel-item__description {
           display: none;
         }
-
         .panel-item__info-description-show {
+          color: #fff;
           display: block;
-          color: # fff;
-          top: 10 px;
-          right: 10 px;
-          padding: 15 px 95 px 10 px 10 px;
+          padding: 15px 95px 10px 10px;
+          right: 10px;
+          top: 10px;
         }
-
-        .panel - item__info - description {
-          position: fixed;
-          top: 0;
+        .panel-item__info-description {
+          background-color: #555;
           bottom: 0;
-          left: 0;
-          right: 0;
-          height: 100 % ;
-          width: 100 % ;
-          z - index: 100;
-          background - color: #555;
-          opacity: 0.9;
-          visibility: hidden;
-          transition: 0.3s ease;
           cursor: pointer;
           display: inline-block;
+          height: 100%;
+          left: 0;
+          opacity: 0.9;
           overflow: auto;
+          position: fixed;
+          right: 0;
+          top: 0;
+          transition: 0.3s ease;
+          visibility: hidden;
+          width: 100%;
+          z-index: 100;
         }
-
         .panel-item__info-description-text {
           display: block;
           font-size: smaller;
         }
-
         .panel-item__info-icon {
-          border: 0px;
+          align-items: center;
+          border: 0;
+          -moz-box-align: center;
+          -webkit-box-align: center; 
           box-sizing: border-box;
+          display: inline-flex;
+          flex-shrink: 0;
+          font-size: 100%;
+          font-stretch: inherit;
           font-style: inherit;
           font-variant: inherit;
           font-weight: inherit;
-          font-stretch: inherit;
+          height: 1.125rem;
           line-height: inherit;
-          font-size: 100%;
-          margin: 0px;
-          padding: 0px;
+          margin: 0;
+          padding: 0;
           vertical-align: baseline;
           width: 1.125rem;
-          height: 1.125rem;
-          display: inline-flex;
-          -webkit-box-align: center;
-          align-items: center;
-          flex-shrink: 0;
         }
-
         .panel-item__icon-close {
-          position: absolute;
-          float: left;
-          overflow: hidden;
+          align-items: center;
+          border: 0;
           bottom: 12px;
-          right: 10px;
-          border: 0px;
+          -moz-box-align: center;
+          -webkit-box-align: center; 
           box-sizing: border-box;
+          display: inline-flex;
+          flex-shrink: 0;
+          float: left;
+          font-size: 100%;
+          font-stretch: inherit;
           font-style: inherit;
           font-variant: inherit;
           font-weight: inherit;
-          font-stretch: inherit;
           line-height: inherit;
-          font-size: 100%;
-          margin: 0px;
-          padding: 0px;
+          margin: 0;
+          overflow: hidden;
+          padding: 0;
+          position: absolute;
+          right: 10px;
           vertical-align: baseline;
-          display: inline-flex;
-          -webkit-box-align: center;
-          align-items: center;
-          flex-shrink: 0;
         }
-
         .panel-item__info {
-          position: relative;
           display: inline-block;
+          position: relative;
         }
-        </style>
-      `;
+        
+      </style>
+    `;
 
     // Create a container element to let us center the text.
     var container = element.appendChild(document.createElement("div"));
