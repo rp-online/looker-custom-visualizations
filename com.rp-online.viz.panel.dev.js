@@ -496,27 +496,27 @@ looker.plugins.visualizations.add({
 
         const label = config[`label_${field.name}`] ? config[`label_${field.name}`] : field.label;
         const size = config[`size_${field.name}`] ? config[`size_${field.name}`] : 'large';
-        const comparisionOption = config[`comparison_${field.name}`] ? config[`comparison_${field.name}`] : false;
+        const comparisonOption = config[`comparison_${field.name}`] ? config[`comparison_${field.name}`] : false;
         const valueFormat = config[`valueFormat_${field.name}`] ? config[`valueFormat_${field.name}`] : false;
 
         const comparisonClassPositive = config[`comparisonNegate_${field.name}`] ? 'negative' : 'positive';
         const comparisonClassNegative = config[`comparisonNegate_${field.name}`] ? 'positive' : 'negative';
 
         const description = config[`description_${field.name}`] ? config[`description_${field.name}`] : '';
-        var comparisionElem = '';
-        if (comparisionOption && comparisionOption == 'percentage') {
+        var comparisonElem = '';
+        if (comparisonOption && comparisonOption == 'percentage') {
           if (secondRow && secondRow[field.name].value) {
-            const comparision = Math.floor(((firstRow[field.name].value - secondRow[field.name].value) / secondRow[field.name].value) * 100)
-            if (comparision >= 0) {
-              comparisionElem = `
+            const comparison = Math.floor(((firstRow[field.name].value - secondRow[field.name].value) / secondRow[field.name].value) * 100)
+            if (comparison >= 0) {
+              comparisonElem = `
                 <div class="panel-item__compare panel-item__compare--${comparisonClassPositive}">
-                  <span class="panel-item__compare-item">▲</span> ${comparision}%
+                  <span class="panel-item__compare-item">▲</span> ${comparison}%
                 </div>`
             }
-            if (comparision < 0) {
-              comparisionElem = `
+            if (comparison < 0) {
+              comparisonElem = `
                 <div class="panel-item__compare panel-item__compare--${comparisonClassNegative}">
-                  <span class="panel-item__compare-item">▼</span> ${comparision}%
+                  <span class="panel-item__compare-item">▼</span> ${comparison}%
                 </div>`
             }
           }
@@ -626,7 +626,7 @@ looker.plugins.visualizations.add({
             >
             <div class="panel-item__label">${label} ${info}</div>
             <div class="panel-item__value">${valFormatted}</div>
-            ${comparisionElem}
+            ${comparisonElem}
             ${referenceElem}
           </div>
           `;
@@ -638,7 +638,7 @@ looker.plugins.visualizations.add({
             >
               <div class="panel-item__label">${label}</div>
               <div class="panel-item__value">${valFormatted}</div>
-              ${comparisionElem}
+              ${comparisonElem}
               ${referenceElem}
             </div>
           `;
