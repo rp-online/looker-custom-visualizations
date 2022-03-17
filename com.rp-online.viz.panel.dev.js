@@ -18,15 +18,15 @@ function on(elem) {
   var textDesc = description[0].innerText;
   viz_log(textDesc);
   var divDesc = document.createElement('div');
-  divDesc.className = 'panel-item__info-description-show';
-  divDesc.id = 'panel-item__info-description-show';
+  divDesc.className = "panel-item__info-description-show";
+  divDesc.id = "panel-item__info-description-show";
   layer.insertBefore(divDesc, layer.firstChild);
 
   var descShow = document.getElementById(
     "panel-item__info-description-show"
   );
-  var divDescText = document.createElement('div');
-  divDescText.className = 'panel-item__info-description-text';
+  var divDescText = document.createElement("div");
+  divDescText.className = "panel-item__info-description-text";
   divDescText.innerHTML = textDesc;
   descShow.appendChild(divDescText);
 }
@@ -35,7 +35,7 @@ function off() {
   document.getElementById(
     "panel-item__info-description-layer"
   ).style.visibility = "hidden";
-  document.querySelector('.panel-item__info-description-show').remove();
+  document.querySelector(".panel-item__info-description-show").remove();
 }
 
 function addMeasures(measures) {
@@ -45,7 +45,7 @@ function addMeasures(measures) {
 }
 
 function addPivots(data) {
-  viz_log('generate new results for pivots')
+  viz_log("generate new results for pivots")
   let newMeasures = []
   for (const [measureName, measure] of Object.entries(data)) {
     const measureIndex = results.findIndex(x => x.name === measureName);
@@ -64,7 +64,7 @@ function addPivots(data) {
 }
 
 function flatData(data) {
-  viz_log('generate new data object for pivots')
+  viz_log("generate new data object for pivots")
 
   if (!data) return false
   let newData = {}
@@ -86,7 +86,7 @@ const fieldlist = (excludeIndex) => {
         label,
         name
       } = field;
-      const option_id = `seconvalueoption_${name}`;
+      const option_id = `secondvalueoption_${name}`;
       valueOptions.push({
         [label]: name
       })
@@ -101,23 +101,20 @@ const getOptions = () => {
     // General Options for the Panel
     orientation: {
       label: "Orientation",
-      type: 'string',
-      section: 'Style',
-      display: 'select',
-      values: [{
-          'Vertical': 'vertical'
-        },
-        {
-          'Horizontal': 'horizontal'
-        }
+      type: "string",
+      section: "Style",
+      display: "select",
+      values: [
+        { "Vertical":   "vertical" },
+        { "Horizontal": "horizontal" }
       ],
-      default: 'vertical',
+      default: "vertical",
       order: 0,
-      display_size: 'half'
+      display_size: "half"
     }
   }
 
-  // Generate Options for each Field
+  // Generate Options for each Series
   results.forEach((field, index) => {
     const {
       description,
@@ -125,118 +122,108 @@ const getOptions = () => {
       name
     } = field;
 
-    viz_log('excludeList')
+    viz_log("excludeList")
     viz_log(excludeList)
     viz_log(name)
 
     if (!excludeList[name]) {
       options[`label_${name}`] = {
-        display: 'text',
+        display: "text",
         placeholder: `${label}`,
         label: `-- ${label} ------------- `,
-        section: 'Series',
-        type: 'string',
+        section: "Series",
+        type: "string",
         order: index * 100 + 0
       };
 
-      options[`valueFormat_${name}`] = {
-        display: 'text',
-        placeholder: ``,
-        label: `Value Format: `,
-        section: 'Series',
-        order: index * 100 + 5,
-        display_size: 'half',
-        type: 'string',
-      };
-
-      options[`comparison_${name}`] = {
-        display: 'select',
-        label: `Comparison: `,
-        series: '1',
-        values: [{
-            "Percentage": "percentage"
-          },
-          {
-            "Absolute": "absolute"
-          },
-          {
-            "None": "none"
-          }
-        ],
-        default: "percentage",
-        section: 'Series',
-        type: 'string',
-        order: index * 100 + 6,
-        display_size: 'half'
-      };
-
       options[`color_${name}`] = {
-        display: 'color',
-        label: `Color: `,
+        display: "color",
+        label: "Color: ",
         default: "#ede9ec",
-        section: 'Series',
-        type: 'string',
+        section: "Series",
+        type: "string",
         order: index * 100 + 1,
-        display_size: 'half'
+        display_size: "half"
       };
 
       options[`size_${name}`] = {
-        display: 'select',
-        label: `Size: `,
-        series: '1',
-        values: [{
-            "Large": "large"
-          },
-          {
-            "Medium": "medium"
-          },
-          {
-            "Small": "small"
-          }
+        display: "select",
+        label: "Size: ",
+        // series: '1',
+        values: [
+          { "Large":  "large" },
+          { "Medium": "medium" },
+          { "Small":  "small" }
         ],
         default: "large",
-        section: 'Series',
-        type: 'string',
+        section: "Series",
+        type: "string",
         order: index * 100 + 2,
-        display_size: 'half'
+        display_size: "half"
       };
 
-      options[`referenceField_${name}`] = {
-        display: 'select',
-        label: `Reference Field: `,
-        values: fieldlist(index),
-        default: "none",
-        section: 'Series',
-        order: index * 100 + 7,
-        type: 'string',
-        display_size: 'half'
+      options[`valueFormat_${name}`] = {
+        display: "text",
+        placeholder: "",
+        label: "Value Format: ",
+        section: "Series",
+        order: index * 100 + 5,
+        display_size: "half",
+        type: "string",
       };
-      
-      options[`referenceLabel_${name}`] = {
-        display: 'text',
-        label: `Label: `,
-        section: 'Series',
-        order: index * 100 + 8,
-        type: 'string',
-        display_size: 'half'
+
+      options[`comparison_${name}`] = {
+        display: "select",
+        label: "Comparison: ",
+        // series: '1',
+        values: [
+          { "Percentage": "percentage" },
+          { "Absolute": "absolute" },
+          { "None": "none" }
+        ],
+        default: "percentage",
+        section: "Series",
+        type: "string",
+        order: index * 100 + 6,
+        display_size: "half"
       };
 
       options[`comparisonNegate_${name}`] = {
-        label: `Negative values are good`,
+        label: "Comparison: Negative values are good",
         default: false,
-        section: 'Series',
+        section: "Series",
+        order: index * 100 + 7,
+        type: "boolean",
+        display_size: "normal"
+      };
+
+      options[`referenceField_${name}`] = {
+        display: "select",
+        label: "Reference Field: ",
+        values: fieldlist(index),
+        default: "none",
+        section: "Series",
+        order: index * 100 + 8,
+        type: "string",
+        display_size: "half"
+      };
+      
+      options[`referenceLabel_${name}`] = {
+        display: "text",
+        label: "Label: ",
+        section: "Series",
         order: index * 100 + 9,
-        type: 'boolean',
-        display_size: 'normal'
+        type: "string",
+        display_size: "half"
       };
 
       options[`description_${name}`] = {
-        display: 'text',
-        label: `Description: `,
-        section: 'Series',
+        display: "text",
+        label: "Description: ",
+        section: "Series",
         order: index * 100 + 10,
-        display_size: 'normal',
-        type: 'string',
+        display_size: "normal",
+        type: "string",
       };
     }
   })
@@ -450,10 +437,10 @@ looker.plugins.visualizations.add({
     }
 
     var elements = '';
-    if (config['orientation'] == 'horizontal') {
+    if (config['orientation'] == "horizontal") {
       this._container.className = "panel-container panel-container--horizontal";
     }
-    if (config['orientation'] == 'vertical') {
+    if (config['orientation'] == "vertical") {
       this._container.className = "panel-container panel-container--vertical";
     }
 
@@ -500,9 +487,9 @@ looker.plugins.visualizations.add({
 
 
         // REFERENCE VALUE 
-        let referenceElem = ''
+        let referenceElem = ""
 
-        if (size != 'small' && config[`referenceField_${field.name}`]) {
+        if (size != "small" && config[`referenceField_${field.name}`]) {
           const refIndex = results.findIndex(x => x.name === config[`referenceField_${field.name}`]);
           const ref = results[refIndex]
           if (ref) {
