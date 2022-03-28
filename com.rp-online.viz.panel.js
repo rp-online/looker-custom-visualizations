@@ -1,4 +1,7 @@
 /* viz_name: com.rp-online.viz.panel */
+let results = []
+let excludeList = []
+
 const getCurrentScript = function() {
   if (document.currentScript && (document.currentScript.src !== ''))
     return document.currentScript.src;
