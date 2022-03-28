@@ -12,9 +12,10 @@ const getCurrentScript = function() {
 
 function viz_log(message) {
   let log_prefix = "Custom Viz - RPM Panel"
-  // Comment out for Production Version
+  // only show console-logs in DEV-VErsion
   if((getCurrentScript).includes('dev',0)) { 
-    console.log(log_prefix + ": " + message) }
+    console.log(log_prefix + ": " + message) 
+  }
 }
 
 function on(elem) {
