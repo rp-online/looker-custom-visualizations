@@ -1,9 +1,20 @@
 /* viz_name: com.rp-online.viz.panel */
+const getCurrentScript = function() {
+  if (document.currentScript && (document.currentScript.src !== ''))
+    return document.currentScript.src;
+  var scripts = document.getElementsByTagName('script'),
+    str = scripts[scripts.length - 1].src;
+  if (str !== '')
+    return str ;
+  //Thanks to https://stackoverflow.com/a/42594856/5175935
+  return new Error().stack.match(/(https?:[^:]*)/)[0];
+};
 
 function viz_log(message) {
   let log_prefix = "Custom Viz - RPM Panel"
   // Comment out for Production Version
-  // console.log(log_prefix + ": " + message)
+  if((getCurrentScript).includes('dev',0)) { 
+    console.log(log_prefix + ": " + message) }
 }
 
 function on(elem) {
